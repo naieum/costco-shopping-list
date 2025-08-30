@@ -798,70 +798,17 @@
         
         function updateRecipeIngredients() {
             console.log('Updating recipe ingredients...');
+            console.log('Current checked items:', checkedItems);
             
-            // Create a mapping of shopping list items to ingredient keywords
-            const ingredientMap = {
-                'chicken-bulk': ['chicken'],
-                'chicken-thighs': ['chicken-thighs', 'chicken'],
-                'ground-beef': ['ground-beef', 'beef'],
-                'beef-chuck': ['beef-chuck', 'beef'],
-                'pork-shoulder': ['pork-shoulder', 'pork'],
-                'bacon': ['bacon'],
-                'eggs': ['eggs'],
-                'butter': ['butter'],
-                'heavy-cream': ['heavy-cream', 'cream'],
-                'greek-yogurt': ['greek-yogurt', 'yogurt'],
-                'cheese': ['cheese'],
-                'spinach': ['spinach', 'greens'],
-                'broccoli': ['broccoli'],
-                'cauliflower': ['cauliflower'],
-                'bell-peppers': ['bell-peppers', 'peppers'],
-                'mushrooms': ['mushrooms'],
-                'onions': ['onions'],
-                'shallots': ['shallots'],
-                'garlic': ['garlic'],
-                'carrots': ['carrots'],
-                'celery': ['celery'],
-                'avocados': ['avocados', 'avocado'],
-                'zucchini': ['zucchini'],
-                'berries': ['berries'],
-                'granny-apples': ['apples'],
-                'honeycrisp-apples': ['apples', 'honeycrisp-apples'],
-                'lemons': ['lemons'],
-                'quinoa': ['quinoa'],
-                'brown-rice': ['brown-rice', 'rice'],
-                'wild-rice': ['wild-rice', 'rice'],
-                'oats': ['oats'],
-                'coconut-flour': ['coconut-flour', 'flour'],
-                'chia-seeds': ['chia-seeds'],
-                'nuts': ['nuts'],
-                'diced-tomatoes': ['diced-tomatoes', 'tomatoes'],
-                'crushed-tomatoes': ['crushed-tomatoes', 'tomatoes'],
-                'tomato-paste': ['tomato-paste'],
-                'coconut-milk': ['coconut-milk'],
-                'bone-broth': ['bone-broth', 'broth'],
-                'vinegar': ['vinegar'],
-                'mustard': ['mustard'],
-                'salt-pepper': ['salt', 'pepper'],
-                'spices-1': ['cumin', 'chili-powder', 'paprika', 'smoked-paprika'],
-                'spices-2': ['italian-seasoning', 'oregano', 'thyme'],
-                'spices-3': ['cinnamon', 'garlic-powder', 'bay-leaves'],
-                'vanilla': ['vanilla'],
-                'herbs': ['cilantro', 'basil', 'chives']
-            };
-            
-            // Get all checked items
-            const checkedIngredients = new Set();
+            // Get all checked items (use the actual shopping list item IDs)
+            const checkedIngredientIds = new Set();
             Object.keys(checkedItems).forEach(itemId => {
                 if (checkedItems[itemId]) {
-                    const mapped = ingredientMap[itemId];
-                    if (mapped) {
-                        mapped.forEach(ingredient => checkedIngredients.add(ingredient));
-                    }
+                    checkedIngredientIds.add(itemId);
                 }
             });
             
-            console.log('Checked ingredients:', Array.from(checkedIngredients));
+            console.log('Checked ingredient IDs:', Array.from(checkedIngredientIds));
             
             // Update recipe ingredients visibility
             document.querySelectorAll('.recipe-ingredient').forEach(recipeItem => {
@@ -869,9 +816,9 @@
                 console.log('Recipe item ingredients:', requiredIngredients);
                 
                 if (requiredIngredients) {
-                    const ingredientList = requiredIngredients.split(',');
+                    const ingredientList = requiredIngredients.split(',').map(s => s.trim());
                     const hasAllIngredients = ingredientList.every(ingredient => 
-                        checkedIngredients.has(ingredient.trim())
+                        checkedIngredientIds.has(ingredient)
                     );
                     
                     console.log(`Recipe needs: ${ingredientList}, has all: ${hasAllIngredients}`);
