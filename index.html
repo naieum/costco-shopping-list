@@ -13,7 +13,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f8f9fa;
+            background: #f5f7fa;
             min-height: 100vh;
             padding: 10px;
             margin: 0;
@@ -24,17 +24,35 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            border: 1px solid #e9ecef;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .header {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 20px 15px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+        
+        .header * {
+            position: relative;
+            z-index: 1;
         }
         
         .header h1 {
@@ -51,85 +69,130 @@
         
         .progress-bar {
             background: rgba(255, 255, 255, 0.2);
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 10px;
             margin-top: 15px;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         .progress-fill {
-            background: #3498db;
+            background: linear-gradient(90deg, #00d4ff 0%, #ffffff 100%);
             height: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .header a {
+            color: white !important;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header a:hover, .header a:active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
         .content {
-            padding: 15px;
+            padding: 20px 15px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
         }
         
         .section {
-            margin-bottom: 20px;
-            background: #fdfdfd;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #e9ecef;
-            border-left: 4px solid #3498db;
+            margin-bottom: 24px;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 16px rgba(148, 163, 184, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 0 2px 2px 0;
         }
         
         .section h2 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            color: #1e293b;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 600;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
         
         .section-icon {
-            font-size: 1.1em;
+            font-size: 1.2em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
         
         .item {
             display: flex;
             align-items: center;
-            padding: 15px 5px;
-            border-bottom: 1px solid #f0f0f0;
-            transition: all 0.2s ease;
-            min-height: 44px; /* iOS touch target minimum */
+            padding: 16px 8px;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 44px;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            border-radius: 12px;
+            margin-bottom: 4px;
         }
         
         .item:last-child {
             border-bottom: none;
+            margin-bottom: 0;
         }
         
-        .item:active {
-            background: #e9ecef;
+        .item:hover, .item:active {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.15);
         }
         
         .item.checked {
             opacity: 0.6;
             text-decoration: line-through;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
         
         .checkbox {
             width: 24px;
             height: 24px;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
-            margin-right: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            margin-right: 16px;
             cursor: pointer;
             position: relative;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex-shrink: 0;
+            background: white;
         }
         
         .checkbox.checked {
-            background: #28a745;
-            border-color: #28a745;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
         
         .checkbox.checked::after {
@@ -145,43 +208,78 @@
         
         .item-text {
             flex: 1;
-            font-size: 1em;
-            color: #333;
+            font-size: 1.05em;
+            color: #334155;
             cursor: pointer;
-            line-height: 1.4;
+            line-height: 1.5;
             word-wrap: break-word;
+            font-weight: 500;
         }
         
         .reset-btn {
             position: fixed;
             bottom: 20px;
             right: 15px;
-            background: #dc3545;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
             border: none;
-            border-radius: 12px;
-            padding: 12px 16px;
+            border-radius: 16px;
+            padding: 14px 18px;
             font-size: 0.9em;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
-            transition: all 0.2s ease;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             min-height: 44px;
             min-width: 44px;
+            backdrop-filter: blur(10px);
         }
         
         .reset-btn:active {
-            background: #c82333;
-            transform: scale(0.95);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            transform: scale(0.95) translateY(1px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.6);
         }
         
         .stats {
             text-align: center;
-            margin-bottom: 15px;
-            font-size: 1em;
-            color: #666;
-            padding: 0 10px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #64748b;
+            padding: 16px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: inset 0 2px 4px rgba(148, 163, 184, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .stats.all-complete {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            transform: scale(1.02);
+        }
+        
+        .recipe-ingredient {
+            transition: all 0.3s ease;
+        }
+        
+        .recipe-ingredient.missing {
+            opacity: 0.4 !important;
+            filter: grayscale(50%) !important;
+        }
+        
+        .recipe-ingredient.available {
+            opacity: 1 !important;
+            filter: grayscale(0%) !important;
+        }
+        
+        .ingredient {
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 0, 0, 0.2);
         }
         
         /* Mobile specific optimizations */
@@ -236,6 +334,33 @@
             .stats {
                 font-size: 0.9em;
             }
+            
+            /* Mobile recipe styles */
+            #recipes {
+                margin: 15px auto;
+                padding: 15px;
+            }
+            
+            #recipes h2 {
+                font-size: 1.5em;
+            }
+            
+            #recipes h3 {
+                font-size: 1.2em;
+            }
+            
+            #recipes h4 {
+                font-size: 1.1em;
+            }
+            
+            #recipes p {
+                font-size: 0.9em;
+                line-height: 1.4;
+            }
+            
+            #recipes > div > div {
+                padding: 15px;
+            }
         }
         
         /* Prevent zoom on iOS when focusing inputs */
@@ -258,6 +383,11 @@
             <p>Low Glycemic & Gluten Free</p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="#recipes" style="color: #3498db; text-decoration: none; font-weight: 500; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 20px; display: inline-block; transition: all 0.2s ease;">
+                    📖 View Recipes
+                </a>
             </div>
         </div>
         
@@ -491,6 +621,92 @@
             </div>
         </div>
         
+        <!-- Recipes Section -->
+        <div id="recipes" style="max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); overflow: hidden;">
+            <div style="text-align: center; margin-bottom: 40px; padding: 30px; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; border-radius: 16px; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><defs><pattern id=\"recipe-grain\" width=\"50\" height=\"50\" patternUnits=\"userSpaceOnUse\"><circle cx=\"10\" cy=\"10\" r=\"1\" fill=\"white\" opacity=\"0.1\"/><circle cx=\"40\" cy=\"30\" r=\"1\" fill=\"white\" opacity=\"0.08\"/></pattern></defs><rect width=\"100\" height=\"100\" fill=\"url(%23recipe-grain)\"/></svg>'); pointer-events: none;"></div>
+                <h2 style="margin: 0; font-size: 2.2em; font-weight: 800; position: relative; z-index: 1; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">📖 Recipe Collection</h2>
+                <p style="margin: 15px 0 0 0; opacity: 0.95; font-size: 1.1em; position: relative; z-index: 1; font-weight: 500;">3-Day Meal Plan + Slow Cooker Recipes</p>
+            </div>
+            
+            <!-- 3-Day Meal Plan -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="color: #1e293b; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 3px solid #f59e0b; font-size: 1.6em; font-weight: 700; display: flex; align-items: center; gap: 12px;">🍽️ 3-Day Meal Plan</h3>
+                
+                <div style="display: grid; gap: 25px; margin-bottom: 20px;">
+                    <div style="border: 2px solid #fef3c7; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.4em; font-weight: 700; position: relative; z-index: 1;">Day 1</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="eggs,butter,spinach,bell-peppers,berries"><strong style="color: #92400e;">Breakfast:</strong> <span class="ingredient">Scrambled eggs</span> cooked in <span class="ingredient">butter</span> with sautéed <span class="ingredient">spinach</span> and <span class="ingredient">bell peppers</span>, side of <span class="ingredient">berries</span></p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="greek-yogurt,nuts,chia-seeds,berries"><strong style="color: #92400e;">Lunch:</strong> <span class="ingredient">Greek yogurt</span> bowl with chopped <span class="ingredient">nuts</span>, <span class="ingredient">chia seeds</span>, and <span class="ingredient">berries</span></p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="ground-beef,broccoli,quinoa,butter"><strong style="color: #92400e;">Dinner:</strong> Grass-fed <span class="ingredient">ground beef</span> sautéed with <span class="ingredient">broccoli</span>, served over <span class="ingredient">quinoa</span>, cooked in <span class="ingredient">butter</span></p>
+                        </div>
+                    </div>
+                    
+                    <div style="border: 2px solid #fef3c7; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.4em; font-weight: 700; position: relative; z-index: 1;">Day 2</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="oats,heavy-cream,nuts,honeycrisp-apples"><strong style="color: #92400e;">Breakfast:</strong> <span class="ingredient">Steel-cut oats</span> cooked in <span class="ingredient">heavy cream</span>, topped with <span class="ingredient">nuts</span> and <span class="ingredient">apple</span> slices</p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="chicken-thighs,spinach,avocados"><strong style="color: #92400e;">Lunch:</strong> <span class="ingredient">Chicken thigh</span> salad over <span class="ingredient">mixed greens</span> with <span class="ingredient">avocado</span></p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="bacon,eggs,bell-peppers,spinach"><strong style="color: #92400e;">Dinner:</strong> <span class="ingredient">Bacon</span> and scrambled <span class="ingredient">eggs</span> with sautéed <span class="ingredient">bell peppers</span> and <span class="ingredient">spinach</span></p>
+                        </div>
+                    </div>
+                    
+                    <div style="border: 2px solid #fef3c7; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -10px; right: -10px; width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.4em; font-weight: 700; position: relative; z-index: 1;">Day 3</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="coconut-flour,eggs,heavy-cream,butter,berries"><strong style="color: #92400e;">Breakfast:</strong> <span class="ingredient">Coconut flour pancakes</span> made with <span class="ingredient">eggs</span>, <span class="ingredient">heavy cream</span>, and <span class="ingredient">butter</span>, topped with <span class="ingredient">berries</span></p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="chicken-bulk,brown-rice,broccoli"><strong style="color: #92400e;">Lunch:</strong> Leftover <span class="ingredient">chicken</span> with <span class="ingredient">brown rice</span> and steamed <span class="ingredient">broccoli</span></p>
+                            <p style="margin: 12px 0; font-weight: 600; color: #451a03;" class="recipe-ingredient" data-ingredients="ground-beef,bell-peppers,wild-rice"><strong style="color: #92400e;">Dinner:</strong> <span class="ingredient">Ground beef</span> stir-fry with mixed vegetables, served over <span class="ingredient">wild rice</span> blend</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slow Cooker Recipes -->
+            <div>
+                <h3 style="color: #1e293b; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 3px solid #10b981; font-size: 1.6em; font-weight: 700; display: flex; align-items: center; gap: 12px;">🍲 Slow Cooker Recipes</h3>
+                
+                <div style="display: grid; gap: 30px;">
+                    <div style="border: 2px solid #d1fae5; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -15px; left: -15px; width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #065f46; margin-bottom: 20px; font-size: 1.5em; font-weight: 700; position: relative; z-index: 1;">Mexican Carnitas</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin-bottom: 15px; font-weight: 600; color: #064e3b; line-height: 1.6;" class="recipe-ingredient" data-ingredients="pork-shoulder,bell-peppers,onions,garlic,spices-1,diced-tomatoes,bone-broth"><strong style="color: #065f46;">Ingredients:</strong> 3-4 lbs <span class="ingredient">pork shoulder</span> (cubed), 2 <span class="ingredient">bell peppers</span> (sliced), 1 <span class="ingredient">onion</span> (sliced), 4 cloves <span class="ingredient">garlic</span> (minced), 2 tsp <span class="ingredient">cumin</span>, 2 tsp <span class="ingredient">chili powder</span>, 1 tsp oregano, 1 tsp <span class="ingredient">smoked paprika</span>, salt/pepper, 1 can <span class="ingredient">diced tomatoes</span>, 1/2 cup <span class="ingredient">bone broth</span></p>
+                            <p style="color: #064e3b; font-weight: 600; line-height: 1.6;" class="recipe-ingredient" data-ingredients="avocados,cheese,herbs"><strong style="color: #065f46;">Instructions:</strong> Cook on low 6-8 hours. Shred pork, serve over cauliflower rice or lettuce wraps. Top with <span class="ingredient">avocado</span>, <span class="ingredient">cheese</span>, and <span class="ingredient">cilantro</span>.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="border: 2px solid #d1fae5; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -15px; left: -15px; width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #065f46; margin-bottom: 20px; font-size: 1.5em; font-weight: 700; position: relative; z-index: 1;">Beef & Mushroom Stew</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin-bottom: 15px; font-weight: 600; color: #064e3b; line-height: 1.6;" class="recipe-ingredient" data-ingredients="beef-chuck,mushrooms,carrots,celery,onions,garlic,bone-broth,tomato-paste,spices-2"><strong style="color: #065f46;">Ingredients:</strong> 2-3 lbs <span class="ingredient">beef chuck</span> (cubed), 1 lb <span class="ingredient">mixed mushrooms</span> (quartered), 2 <span class="ingredient">carrots</span> (chunked), 2 <span class="ingredient">celery</span> stalks (chopped), 1 <span class="ingredient">onion</span> (diced), 4 cloves <span class="ingredient">garlic</span> (minced), 2 cups beef <span class="ingredient">bone broth</span>, 2 tbsp <span class="ingredient">tomato paste</span>, 2 tsp <span class="ingredient">thyme</span>, 1 tsp rosemary, 2 bay leaves, salt/pepper</p>
+                            <p style="color: #064e3b; font-weight: 600; line-height: 1.6;" class="recipe-ingredient" data-ingredients="coconut-flour"><strong style="color: #065f46;">Instructions:</strong> Cook on low 7-8 hours. Thicken with <span class="ingredient">coconut flour</span> slurry if desired.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="border: 2px solid #d1fae5; border-radius: 16px; padding: 25px; background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%); box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1); position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -15px; left: -15px; width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; opacity: 0.1;"></div>
+                        <h4 style="color: #065f46; margin-bottom: 20px; font-size: 1.5em; font-weight: 700; position: relative; z-index: 1;">Chicken Cacciatore</h4>
+                        <div style="position: relative; z-index: 1;">
+                            <p style="margin-bottom: 15px; font-weight: 600; color: #064e3b; line-height: 1.6;" class="recipe-ingredient" data-ingredients="chicken-thighs,bell-peppers,onions,mushrooms,crushed-tomatoes,bone-broth,garlic,spices-2,herbs"><strong style="color: #065f46;">Ingredients:</strong> 6-8 <span class="ingredient">chicken thighs</span> (bone-in, skin-on), 1 <span class="ingredient">bell pepper</span> (sliced), 1 <span class="ingredient">onion</span> (sliced), 8 oz <span class="ingredient">mushrooms</span> (sliced), 1 can <span class="ingredient">crushed tomatoes</span>, 1/4 cup <span class="ingredient">bone broth</span>, 3 cloves <span class="ingredient">garlic</span> (minced), 2 tsp Italian seasoning, 1 tsp oregano, salt/pepper, fresh <span class="ingredient">basil</span></p>
+                            <p style="color: #064e3b; font-weight: 600; line-height: 1.6;" class="recipe-ingredient" data-ingredients="zucchini"><strong style="color: #065f46;">Instructions:</strong> Cook on low 6 hours. Serve over <span class="ingredient">zucchini</span> noodles or spaghetti squash.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e2e8f0;">
+                <a href="#top" style="color: white !important; text-decoration: none; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 14px 28px; border-radius: 25px; display: inline-block; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);">
+                    ⬆️ Back to Shopping List
+                </a>
+            </div>
+        </div>
+        
         <button class="reset-btn" onclick="resetList()">Reset All</button>
     </div>
     
@@ -503,6 +719,10 @@
             loadState();
             updateProgress();
             setupEventListeners();
+            // Initialize all recipe ingredients as missing
+            document.querySelectorAll('.recipe-ingredient').forEach(item => {
+                item.classList.add('missing');
+            });
         });
         
         function setupEventListeners() {
@@ -561,9 +781,117 @@
             const totalCount = allItems.length;
             
             const percentage = totalCount > 0 ? (checkedCount / totalCount) * 100 : 0;
+            const statsElement = document.getElementById('stats');
             
             document.getElementById('progressFill').style.width = percentage + '%';
-            document.getElementById('stats').textContent = `${checkedCount} of ${totalCount} items completed`;
+            
+            if (checkedCount === totalCount && totalCount > 0) {
+                statsElement.textContent = '🎉 All ingredients collected! Ready to cook!';
+                statsElement.classList.add('all-complete');
+            } else {
+                statsElement.textContent = `${checkedCount} of ${totalCount} items completed`;
+                statsElement.classList.remove('all-complete');
+            }
+            
+            updateRecipeIngredients();
+        }
+        
+        function updateRecipeIngredients() {
+            console.log('Updating recipe ingredients...');
+            
+            // Create a mapping of shopping list items to ingredient keywords
+            const ingredientMap = {
+                'chicken-bulk': ['chicken'],
+                'chicken-thighs': ['chicken-thighs', 'chicken'],
+                'ground-beef': ['ground-beef', 'beef'],
+                'beef-chuck': ['beef-chuck', 'beef'],
+                'pork-shoulder': ['pork-shoulder', 'pork'],
+                'bacon': ['bacon'],
+                'eggs': ['eggs'],
+                'butter': ['butter'],
+                'heavy-cream': ['heavy-cream', 'cream'],
+                'greek-yogurt': ['greek-yogurt', 'yogurt'],
+                'cheese': ['cheese'],
+                'spinach': ['spinach', 'greens'],
+                'broccoli': ['broccoli'],
+                'cauliflower': ['cauliflower'],
+                'bell-peppers': ['bell-peppers', 'peppers'],
+                'mushrooms': ['mushrooms'],
+                'onions': ['onions'],
+                'shallots': ['shallots'],
+                'garlic': ['garlic'],
+                'carrots': ['carrots'],
+                'celery': ['celery'],
+                'avocados': ['avocados', 'avocado'],
+                'zucchini': ['zucchini'],
+                'berries': ['berries'],
+                'granny-apples': ['apples'],
+                'honeycrisp-apples': ['apples', 'honeycrisp-apples'],
+                'lemons': ['lemons'],
+                'quinoa': ['quinoa'],
+                'brown-rice': ['brown-rice', 'rice'],
+                'wild-rice': ['wild-rice', 'rice'],
+                'oats': ['oats'],
+                'coconut-flour': ['coconut-flour', 'flour'],
+                'chia-seeds': ['chia-seeds'],
+                'nuts': ['nuts'],
+                'diced-tomatoes': ['diced-tomatoes', 'tomatoes'],
+                'crushed-tomatoes': ['crushed-tomatoes', 'tomatoes'],
+                'tomato-paste': ['tomato-paste'],
+                'coconut-milk': ['coconut-milk'],
+                'bone-broth': ['bone-broth', 'broth'],
+                'vinegar': ['vinegar'],
+                'mustard': ['mustard'],
+                'salt-pepper': ['salt', 'pepper'],
+                'spices-1': ['cumin', 'chili-powder', 'paprika', 'smoked-paprika'],
+                'spices-2': ['italian-seasoning', 'oregano', 'thyme'],
+                'spices-3': ['cinnamon', 'garlic-powder', 'bay-leaves'],
+                'vanilla': ['vanilla'],
+                'herbs': ['cilantro', 'basil', 'chives']
+            };
+            
+            // Get all checked items
+            const checkedIngredients = new Set();
+            Object.keys(checkedItems).forEach(itemId => {
+                if (checkedItems[itemId]) {
+                    const mapped = ingredientMap[itemId];
+                    if (mapped) {
+                        mapped.forEach(ingredient => checkedIngredients.add(ingredient));
+                    }
+                }
+            });
+            
+            console.log('Checked ingredients:', Array.from(checkedIngredients));
+            
+            // Update recipe ingredients visibility
+            document.querySelectorAll('.recipe-ingredient').forEach(recipeItem => {
+                const requiredIngredients = recipeItem.getAttribute('data-ingredients');
+                console.log('Recipe item ingredients:', requiredIngredients);
+                
+                if (requiredIngredients) {
+                    const ingredientList = requiredIngredients.split(',');
+                    const hasAllIngredients = ingredientList.every(ingredient => 
+                        checkedIngredients.has(ingredient.trim())
+                    );
+                    
+                    console.log(`Recipe needs: ${ingredientList}, has all: ${hasAllIngredients}`);
+                    
+                    // Force remove both classes first
+                    recipeItem.classList.remove('missing', 'available');
+                    
+                    if (hasAllIngredients) {
+                        recipeItem.classList.add('available');
+                        recipeItem.style.opacity = '1';
+                        recipeItem.style.filter = 'grayscale(0%)';
+                        console.log('Set to available');
+                    } else {
+                        recipeItem.classList.add('missing');
+                        recipeItem.style.opacity = '0.4';
+                        recipeItem.style.filter = 'grayscale(50%)';
+                        console.log('Set to missing');
+                    }
+                }
+            });
         }
         
         function resetList() {
